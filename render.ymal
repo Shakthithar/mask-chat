@@ -4,6 +4,4 @@ services:
     env: python
     buildCommand: pip install -r mask-chat/requirements.txt
     startCommand: python mask-chat/app.py
-    envVars:
-      - key: PORT
-        value: 10000
+    plan: free
