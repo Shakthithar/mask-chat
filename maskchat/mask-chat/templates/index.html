@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mask Chat - WhatsApp Style</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+  <!-- socket.io client from CDN (matches typical flask-socketio setups) -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body class="bg-gray-200 h-screen flex flex-col font-sans">
+
+  <!-- Entry Screen -->
+  <div id="entryScreen" class="flex flex-col items-center justify-center p-6 space-y-6 max-w-sm mx-auto mt-12 bg-white rounded-lg shadow">
+    <h1 class="text-2xl font-bold text-green-600">🔐 Mask Chat</h1>
+    <p class="text-sm text-gray-600 text-center">End-to-end encrypted, WhatsApp-style design.</p>
+
+    <input id="nameInput" placeholder="Your Name" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-400 outline-none" />
+    <input id="roomInput" placeholder="Room Code" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-400 outline-none" />
+    <input id="keyInput" type="password" placeholder="Secret Key" class="w-full px-4 py-2 border rounded focus:ring-2 focus:ring-green-400 outline-none" />
+
+    <button id="joinBtn" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">Start Chat</button>
+
+    <p id="entryError" class="text-sm text-red-600 hidden"></p>
+    <p class="text-xs text-gray-500">Tip: Use the same Room Code + Secret Key with your partner.</p>
+  </div>
+
+  <!-- Chat Screen -->
+  <div id="chatScreen" class="hidden flex-1 flex-col max-w-md mx-auto w-full bg-gray-100 shadow-lg rounded-t-lg overflow-hidden">
+
+    <!-- Top Bar -->
+    <div class="bg-green-600 text-white p-3 flex justify-between items-center">
+      <div>
+        <div id="roomLabel" class="font-medium">Room</div>
+        <div id="meLabel" class="text-xs opacity-80">You: —</div>
+      </div>
+      <div class="text-right">
+        <div id="status" class="text-sm opacity-90">Offline</div>
+        <div id="peerLabel" class="text-xs opacity-80"></div>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div id="messages" class="flex-1 p-3 overflow-y-auto space-y-3 bg-gray-200">
+      <!-- Messages injected here -->
+    </div>
+
+    <!-- Typing Indicator -->
+    <div id="typingIndicator" class="text-xs text-gray-500 italic px-4 h-4 overflow-hidden"></div>
+
+    <!-- Input Bar (sticky) -->
+    <div class="p-3 border-t flex items-center space-x-2 bg-white sticky bottom-0">
+      <input id="messageInput" placeholder="Type a message" 
+        class="flex-1 border px-3 py-2 rounded-full outline-none focus:ring-2 focus:ring-green-400 bg-gray-100" />
+      <button id="sendBtn" class="bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700">➤</button>
+    </div>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
