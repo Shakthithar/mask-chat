@@ -3,9 +3,5 @@ services:
     name: mask-chat
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python app.py"
-    autoDeploy: true
-    envVars:
-      - key: PORT
-        value: 5000
+    buildCommand: pip install -r maskchat/mask-chat/requirements.txt
+    startCommand: python maskchat/mask-chat/app.py
