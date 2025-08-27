@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: mask-chat
-    env: python
-    buildCommand: pip install -r mask-chat/requirements.txt
-    startCommand: python mask-chat/app.py
-    plan: free
