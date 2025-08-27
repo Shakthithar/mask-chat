@@ -3,7 +3,6 @@
 # Fixed for Python 3.12 (Eventlet-safe)
 
 import os
-import sys
 import ssl
 import logging
 
@@ -104,6 +103,6 @@ def index():
 
 # ---------------- Run ----------------
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    logger.info(f"🚀 Running Mask Chat on http://127.0.0.1:{port}")
+    port = int(os.environ.get("PORT", 5000))  # Render uses dynamic PORT
+    logger.info(f"🚀 Running Mask Chat on 0.0.0.0:{port}")
     eventlet.wsgi.server(eventlet.listen(("0.0.0.0", port)), app)
